@@ -44,3 +44,4 @@ Posts.init(
     
 
 
+module.exports = Posts;
