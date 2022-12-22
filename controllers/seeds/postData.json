@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "The Shawshank Redemption",
+        "content": "This is a movie about some dudes",
+        "user_id": 1
+    },
+    {
+        "id": 2,
+        "title": "The Godfather",
+        "content": "This is a movie about a crime family",
+        "user_id": 1
+    },
+    {
+        "id": 3,
+        "title": "The Dark Knight",
+        "content": "This is a movie about Batman",
+        "user_id": 1
+    },
+    {
+        "id": 4,
+        "title": "The Godfather: Part II",
+        "content": "This is a movie about the continuation of the crime family",
+        "user_id": 1
+    },
+    {
+        "id": 5,
+        "title": "Pulp Fiction",
+        "content": "This is a movie about some criminal misadventures",
+        "user_id": 1
+    },
+    {
+        "id": 6,
+        "title": "The Good, the Bad and the Ugly",
+        "content": "This is a western movie about a treasure hunt",
+        "user_id": 1
+    }
+]
