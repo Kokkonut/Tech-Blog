@@ -1,0 +1,11 @@
+{{#each posts as |post|}}
+        <div class="container">
+            <div class="'row s12">
+            <div class="col s6 amber"><h6>{{post.title}}</h6></div>
+            <div class="col s6 amber">{{post.user.username}}</div>
+            </div>
+            <div class="row">
+                <div class="col s12">{{post.content}}</div>
+            </div>
+        </div>
+{{/each}}
