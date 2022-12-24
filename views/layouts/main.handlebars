@@ -15,9 +15,9 @@
 {{!-- <div class="navbar-fixed"></div> --}}
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo left">Tech Blog</a>
+        <a href="/" class="brand-logo left">Tech Blog</a>
         <ul id="nav-mobile" class="right">
-          <li><a href="sass.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="badges.html">Dashboard</a></li>
           <li><a href="#login-modal" class="modal-trigger">Login</a></li>
         </ul>
@@ -40,14 +40,14 @@
     <form class="center-align" onsubmit="return validateForm('login')">
       <div class="row center-align">
         <div class="input-field col s6 center-align">
-          <input id="login-username" type="text" class="validate" required>
+          <input id="login_username" type="text" class="validate" required>
           <label for="username">Username</label>
           <span class="helper-text" data-error="Please enter a valid username" data-success=""></span>
         </div>
       </div>
       <div class="row center-align">
         <div class="input-field col s6 center-align">
-          <input id="login-password" type="password" class="validate" required>
+          <input id="login_password" type="password" class="validate" required>
           <label for="password">Password</label>
           <span class="helper-text" data-error="Please enter a valid password" data-success=""></span>
         </div>
@@ -69,14 +69,14 @@
     <form class="center-align" onsubmit="return validateForm('signup')">
       <div class="row center-align">
         <div class="input-field col s6 center-align">
-          <input id="signup-username" type="text" class="validate" required>
+          <input id="signup_username" name="signup_username" type="text" class="validate" required>
           <label for="username">Username</label>
           <span class="helper-text" data-error="Please enter a valid username" data-success=""></span>
         </div>
       </div>
       <div class="row center-align">
         <div class="input-field col s6 center-align">
-          <input id="signup-password" type="password" class="validate" required>
+          <input id="signup_password" name="signup_password" type="password" class="validate" required>
           <label for="password">Password</label>
           <span class="helper-text" data-error="Please enter a valid password" data-success=""></span>
         </div>

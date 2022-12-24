@@ -28,7 +28,7 @@ const sess = {
     })
 };
 
-// app.use(session(sess)); // Use the session middleware
+app.use(session(sess)); // Use the session middleware
 
 app.engine('handlebars', hbs.engine);  // Set the handlebars engine
 app.set('view engine', 'handlebars'); // Set the view engine
