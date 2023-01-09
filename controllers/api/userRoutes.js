@@ -1,6 +1,19 @@
 const router = require('express').Router();
 const { Users } = require('../../models');
 
+router.get('/', async (req, res) => {
+    try {
+        const userData = await Users.findAll({
+
+        });
+        console.log(userData);
+        res.status(200).json(userData);
+    } catch (err) {
+        res.status(500).json (err)
+    }
+})
+
+
 //login route
 router.post('/login', async (req, res) => {
     try {
@@ -13,7 +26,7 @@ router.post('/login', async (req, res) => {
             return;
         }
 
-        const  validPassword = await userData.checkPassword(req.body.password);
+        const  validPassword = userData.checkPassword(req.body.password);
 
         if (!validPassword) {
             res
@@ -24,9 +37,9 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.logged_in = true;
-            // req.session.username = userData.username;
+            req.session.username = userData.username;
 
-            res.redirect('/');
+         res.redirect('/');
         });
     } catch (err) {
         res.status(500).json(err);
@@ -36,25 +49,62 @@ router.post('/login', async (req, res) => {
 
 //create new users
 router.post('/signup', async (req, res) => {
-    try {
-        const newUser = await Users.create({
-            username: req.body.signup_username,
-            password: req.body.signup_password
-        });
+  try {
+    // Check if the username is already in use
+    const existingUser = await Users.findOne({
+        attributes: ['username'],
+        where: {
+          username: req.body.signup_username
+        }
+      });
+      
+    if (existingUser) {
+        console.log("Existing user:", existingUser);
+        console.log("Signup username:", req.body.signup_username);
+        
+      // If the username is already in use, send a response indicating that the username is taken
+      return res.status(400).json({ message: 'Username is already taken' });
+    }
 
-        req.session.save(() => {
-            req.session.logged_in = true;
-            req.session.save = req.body.signup_username;
+    // Create a new user with the provided username and password
+    const newUser = await Users.create({
+      username: req.body.signup_username,
+      password: req.body.signup_password,
+    });
 
-            res.redirect('/');
+    // Save the new user to the session
+    req.session.save(() => {
+      req.session.logged_in = true;
+      req.session.username = req.body.signup_username;
 
-            
-        })
+      // Redirect the client to the dashboard
+      res.redirect('/');
+    });
 
-    } catch (err) {
-        res.status(500).json (err);
-    } 
-})
+    console.log(newUser);
+  } catch (err) {
+    // If there is an error, send a response with a 500 status code and the error object
+    res.status(500).json(err);
+  }
+});
+
+
+module.exports = router;
+
+  
+  
+
+  //logout route
+    router.post('/logout', (req, res) => {
+        if (req.session.logged_in) {
+            req.session.destroy(() => {
+                res.status(204).end();
+            });
+        } else {
+            res.status(404).end();
+        }
+    });
+
 
 
 module.exports = router;
