@@ -11,7 +11,7 @@ async function logout() {
           <p>You have been logged out.</p>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+          <a href="#!" id="close-modal" class="modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
       </div>
     `;
@@ -20,8 +20,12 @@ async function logout() {
     const instance = M.Modal.init(document.getElementById('logout-modal'));
     instance.open();
   
+    const closeButton = document.getElementById('close-modal');
+    closeButton.addEventListener('click', () => {
+      window.location.replace('/');
+    });
+  
     setTimeout(() => {
-      instance.close();
       window.location.replace('/');
     }, 5000);
   }
