@@ -44,8 +44,40 @@ router.get('/signup', (req, res) => {
 
 //render dashboard
 router.get('/dashboard', withAuth, async (req, res) => {
-    res.render('dashboard');
+    try {
+        const postData = await Posts.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [
+                {
+                    model: Users,
+                    attributes: ['username'],
+                },
+            ],
+        });
+
+        // Serialize data so the template can read it
+        const posts = postData.map((post) => post.get({ plain: true }));
+        console.log(posts);
+
+        // Pass serialized data and session flag into template
+        res.render('dashboard', {
+            posts,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+
 });
+
+
+
+//render dashboard old
+// router.get('/dashboard', withAuth, async (req, res) => {
+//     res.render('dashboard');
+// });
 
 
 module.exports = router;
