@@ -1,17 +1,17 @@
 <div id="login-modal">
   <h3>Login</h3>
   <div class="modal-content">
-    <form id="login-form" class="center-align">
+    <form id="login-form" class="center-align"  action="/api/users/login" method="post">
       <div class="row center-align">
         <div class="input-field col s6 center-align">
-          <input id="login_username" type="text" class="validate" required>
+          <input id="login_username" type="text" name="username" class="validate" required>
           <label for="username">Username</label>
           <span class="helper-text" data-error="Please enter a valid username" data-success=""></span>
         </div>
       </div>
       <div class="row center-align">
         <div class="input-field col s6 center-align">
-          <input id="login_password" type="password" class="validate" required>
+          <input id="login_password" type="password" name="password" class="validate" required>
           <label for="password">Password</label>
           <span class="helper-text" data-error="Please enter a valid password" data-success=""></span>
         </div>

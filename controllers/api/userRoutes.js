@@ -16,35 +16,42 @@ router.get('/', async (req, res) => {
 
 //login route
 router.post('/login', async (req, res) => {
-    try {
-        const userData = await Users.findOne({ where: { username: req.body.username}});
-
-        if (!userData) {
-            res
-                .status(400)
-                .json('Incorrect username or password please try again');
-            return;
-        }
-
-        const  validPassword = userData.checkPassword(req.body.password);
-
-        if (!validPassword) {
-            res
-                .status(400)
-                .json('Incorrect password, please try again');
-            return;
-        }
-
-        req.session.save(() => {
-            req.session.logged_in = true;
-            req.session.username = userData.username;
-
-         res.redirect('/');
-        });
-    } catch (err) {
-        res.status(500).json(err);
+  console.log(`username: ${req.body.username}`);
+  console.log(`password: ${req.body.password}`);
+  try {
+    const userData = await Users.findOne({ where: { username: req.body.username } });
+    console.log(userData);
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+    
+      // Redirect the client to the dashboard
+      res.redirect('/');
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
 });
+
+
 
 
 //create new users
@@ -78,7 +85,7 @@ router.post('/signup', async (req, res) => {
       req.session.username = req.body.signup_username;
 
       // Redirect the client to the dashboard
-      res.redirect('/');
+      res.redirect('/dashboard');
     });
 
     console.log(newUser);
