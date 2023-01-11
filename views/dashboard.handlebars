@@ -4,7 +4,7 @@
 <div id="new-post-modal" class="modal">
   <div class="modal-content">
     <h4>Add a New Post</h4>
-    <form action="/api/posts/create" method="post">
+    <form>
       <div class="input-field col s12">
         <textarea id="new-post-title" class="materialize-textarea" name="title"></textarea>
         <label for="new-post-title">Title</label>
@@ -20,6 +20,18 @@
     <button class="btn waves-effect waves-light" type="submit" id="create-post-btn">Add Post</button>
   </div>
 </div>
+
+<!-- Modal Structure -->
+<div id="post-success-modal" class="modal">
+  <div class="modal-content">
+    <h4>Post Successful</h4>
+    <p>Your post has been successfully created!</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
 
 <script src="./js/dashboard.js"></script>
 <script src="./js/newpost.js"></script>
