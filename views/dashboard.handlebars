@@ -1,27 +1,25 @@
-<!-- Trigger button to open the modal -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Post</a>
+<a class="waves-effect waves-light btn modal-trigger" href="#new-post-modal">Add New Post</a>
 
 <!-- Modal Structure -->
-<div id="modal1" class="modal">
+<div id="new-post-modal" class="modal">
   <div class="modal-content">
     <h4>Add a New Post</h4>
     <form action="/api/posts/create" method="post">
       <div class="input-field col s12">
-        <textarea id="title" class="materialize-textarea" name="title"></textarea>
-        <label for="title">Title</label>
+        <textarea id="new-post-title" class="materialize-textarea" name="title"></textarea>
+        <label for="new-post-title">Title</label>
       </div>
       <div class="input-field col s12">
-        <textarea id="body" class="materialize-textarea" name="body"></textarea>
-        <label for="body">Body</label>
+        <textarea id="new-post-body" class="materialize-textarea" name="body"></textarea>
+        <label for="new-post-body">Body</label>
       </div>
     </form>
   </div>
   <div class="modal-footer">
     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Add Post</button>
+    <button class="btn waves-effect waves-light" type="submit" id="create-post-btn">Add Post</button>
   </div>
 </div>
 
-
-
 <script src="./js/dashboard.js"></script>
+<script src="./js/newpost.js"></script>

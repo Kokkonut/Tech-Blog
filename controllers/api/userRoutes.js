@@ -38,6 +38,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
+      req.session.user_id = userData.id;
       req.session.username = req.body.username;
       req.session.logged_in = true;
     
@@ -82,7 +83,7 @@ router.post('/signup', async (req, res) => {
     // Save the new user to the session
     req.session.save(() => {
       req.session.logged_in = true;
-      req.session.username = req.body.signup_username;
+      req.session.user_id = newUser.id;
 
       // Redirect the client to the dashboard
       res.redirect('/dashboard');

@@ -46,18 +46,22 @@ router.get('/userposts', async (req, res) => {
 //route to create a new post
 router.post('/create', async (req, res) => {
     try {
+        console.log("req body:", req.body);
+        console.log("user id:", req.session.user_id);
         const postData = await Posts.create({ 
             title: req.body.title,
-            content: req.body.content,
-            username: req.session.username,
+            content: req.body.body,
+            user_id: req.session.user_id,
         });
-        console.log(postData);
+        console.log("post data:", postData);
         res.status(200).json(postData);
 
     } catch (err) {
+        console.log("Error:", err);
         res.status(500).json(err);
     }
 });
+
 
 
 module.exports = router;
