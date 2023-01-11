@@ -41,5 +41,10 @@ router.get('/signup', (req, res) => {
 });
 
 
+//render dashboard
+router.get('/dashboard', async (req, res) => {
+    res.render('dashboard');
+});
+
 
 module.exports = router;

@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
       req.session.logged_in = true;
     
       // Redirect the client to the dashboard
-      res.redirect('/');
+      res.redirect('/dashboard');
     });
 
   } catch (err) {
