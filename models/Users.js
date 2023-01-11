@@ -42,7 +42,12 @@ Users.init(
             async beforeUpdate(updatedUserData) {
                 updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 return updatedUserData;
-            }
+            },
+            async afterCreate(user, options) {
+                req.session.user_id = user.id;
+                return user;
+              }
+
         },
 
         sequelize,

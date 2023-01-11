@@ -44,7 +44,7 @@ router.get('/userposts', async (req, res) => {
 });
 
 //route to create a new post
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
     try {
         const postData = await Posts.create({ 
             title: req.body.title,

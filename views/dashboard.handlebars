@@ -5,13 +5,13 @@
 <div id="modal1" class="modal">
   <div class="modal-content">
     <h4>Add a New Post</h4>
-    <form>
+    <form action="/api/posts/create" method="post">
       <div class="input-field col s12">
-        <textarea id="title" class="materialize-textarea"></textarea>
+        <textarea id="title" class="materialize-textarea" name="title"></textarea>
         <label for="title">Title</label>
       </div>
       <div class="input-field col s12">
-        <textarea id="body" class="materialize-textarea"></textarea>
+        <textarea id="body" class="materialize-textarea" name="body"></textarea>
         <label for="body">Body</label>
       </div>
     </form>
