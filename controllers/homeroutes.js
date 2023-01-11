@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Posts, Users } = require('../models');
+const withAuth = require('../utils/auth');
 
 //render homepage
 router.get('/', async (req, res) => {
@@ -42,7 +43,7 @@ router.get('/signup', (req, res) => {
 
 
 //render dashboard
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     res.render('dashboard');
 });
 
