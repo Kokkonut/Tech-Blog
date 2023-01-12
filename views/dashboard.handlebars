@@ -6,12 +6,12 @@
   <div class="container post-wrapper grey hoverable">
     <div class="row s12 amber">
       <div class="col s8 amber"><h5>{{post.title}}</h5></div>
-      <div class="col s4 amber right-align">{{post.user.username}}
-        <div class="col s12">{{post.date_created}}</div>
+      <div class="col s4 amber right-align">{{ post.user.username }}
+        <div class="col s12">{{ format_time post.date_created }}</div>
       </div>
     </div>
     <div class="row grey">
-      <div class="col s12 grey">{{post.content}}</div>
+      <div class="col s12 grey">{{ post.content }}</div>
     </div>
   </div>
 
