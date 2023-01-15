@@ -79,7 +79,14 @@ router.get('/posts/:id', async (req, res) => {
         console.log("req params:", req.params);
         const postID = req.params.id
         console.log(postID);
-        const postData = await Posts.findByPk(postID);
+        const postData = await Posts.findByPk(postID, {
+            include: [
+                {
+                    model: Users,
+                    attributes: ['username'],
+                },
+            ],
+        });
         console.log(postData);
         const replyData = await Comments.findAll({
             order: [['comment_text', 'ASC']],
@@ -95,13 +102,13 @@ router.get('/posts/:id', async (req, res) => {
         });
         console.log(replyData);
         const post = postData.get({ plain: true });
-        const replys = replyData.map((reply) => reply.get({ plain: true }));
-        console.log (replys);
+        const reply = replyData.map((reply) => reply.get({ plain: true }));
+        console.log (reply);
      
    
         res.render('post', {
             post,
-            replys,
+            reply,
             logged_in: req.session.logged_in
         });
         req.session.save(() => {

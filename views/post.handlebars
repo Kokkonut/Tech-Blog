@@ -1,14 +1,43 @@
-
-
-  <div class="container post-wrapper grey hoverable">
-    <div class="row s12 amber">
-      <div class="col s8 amber"><h5>{{post.title}}</h5></div>
-      <div class="col s4 amber right-align">{{post.user.username}}
-        <div class="col s12">{{format_time post.date_created}}</div>
-      </div>
+<div class="container post-wrapper grey hoverable">
+  <div class="row s12 amber">
+    <div class="col s8 amber">
+      <h5>{{post.title}}</h5>
     </div>
-    <div class="row grey">
-      <div class="col s12 grey">{{post.content}}</div>
+    <div class="col s4 amber right-align">
+      {{post.user.username}}
+      <div class="col s12">{{format_time post.date_created}}</div>
     </div>
   </div>
-  
+  <div class="row grey">
+    <div class="col s12 grey">{{post.content}}</div>
+  </div>
+  {{#each reply as |reply|}}
+<div class="card-panel grey lighten-4">
+  <div class="row">
+    <div class="col s12">
+      <div class="right-align">
+        <span class="amber-text">{{reply.user.username}}</span>
+        <span>{{format_time reply.date_created}}</span>
+      </div>
+      <p>{{reply.comment_text}}</p>
+    </div>
+  </div>
+</div>
+
+  {{/each}}
+</div>
+
+{{#if logged_in}}
+<form id="create-comment-form" action="../api/comments/create" method="post">
+    <div class="input-field">
+      <textarea id="comment-text" name="comment" class="materialize-textarea"></textarea>
+      <label for="comment-text">Comment</label>
+    </div>
+    <button id="submit-comment" type="submit" class="btn">Submit</button>
+</form>
+
+{{else}}
+  <p>You must to logged in to post a reply</p>
+{{/if}}
+
+<script scr="/js/reply.js"></script> 
