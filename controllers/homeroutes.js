@@ -16,8 +16,6 @@ router.get('/', async (req, res) => {
 
         // Serialize data so the template can read it
         const posts = postData.map((post) => post.get({ plain: true }));
-        console.log(posts);
-
         // Pass serialized data and session flag into template
         res.render('homepage', {
             posts,
@@ -59,7 +57,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
         // Serialize data so the template can read it
         const posts = postData.map((post) => post.get({ plain: true }));
-        console.log(posts);
 
         // Pass serialized data and session flag into template
         res.render('dashboard', {
@@ -76,9 +73,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 //get posts by pk
 router.get('/posts/:id', async (req, res) => {
     try {
-        console.log("req params:", req.params);
         const postID = req.params.id
-        console.log(postID);
         const postData = await Posts.findByPk(postID, {
             include: [
                 {
@@ -87,7 +82,6 @@ router.get('/posts/:id', async (req, res) => {
                 },
             ],
         });
-        console.log(postData);
         const replyData = await Comments.findAll({
             order: [['comment_text', 'ASC']],
             include: [
@@ -100,10 +94,10 @@ router.get('/posts/:id', async (req, res) => {
                 post_id: postID
             }
         });
-        console.log(replyData);
+
         const post = postData.get({ plain: true });
         const reply = replyData.map((reply) => reply.get({ plain: true }));
-        console.log (reply);
+
      
    
         res.render('post', {
@@ -114,8 +108,7 @@ router.get('/posts/:id', async (req, res) => {
         req.session.save(() => {
             req.session.postId = postID;
         })
-        console.log(post)
-        // console.log(reply)
+
         
     } catch (err) { 
         res.status(500).json(err);
